@@ -30,6 +30,9 @@ public class ConsoleApp implements CommandLineRunner {
         SpringApplication.run(ConsoleApp.class, args);
     }
 
+    /**
+     * Старт программы
+     */
     @Override
     public void run(String... args) {
         System.out.println("=== Консольное приложение ===");
