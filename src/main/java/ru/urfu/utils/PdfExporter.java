@@ -10,16 +10,9 @@ import java.io.FileOutputStream;
 /**
  * Экспортёр текста в PDF.
  */
-public class PdfExporter {
-    /**
-     * Экспортирует содержимое в PDF файл.
-     *
-     * @param outputPath путь для сохранения pdf файла
-     * @param content    текстовое содержимое
-     * @throws DocumentException   если произошла ошибка PDF генерации
-     * @throws java.io.IOException если не удалось записать файл
-     */
-    public static void export(String outputPath, String content)
+public class PdfExporter implements Exporter {
+
+    public void export(String outputPath, String content)
             throws DocumentException, java.io.IOException {
 
         try (FileOutputStream outputStream = new FileOutputStream(outputPath)) {
