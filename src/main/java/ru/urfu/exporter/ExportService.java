@@ -1,9 +1,8 @@
-package ru.urfu.utils;
+package ru.urfu.exporter;
 
 import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -11,11 +10,10 @@ import java.util.Map;
  */
 public class ExportService {
 
-    private final Map<String, Exporter> exporters = new HashMap<>();
+    private final Map<String, Exporter> exporters;
 
-    public ExportService() {
-        exporters.put("pdf", new PdfExporter());
-        //добавляем сюда все экспортеры
+    public ExportService(Map<String, Exporter> exporters) {
+        this.exporters = exporters;
     }
 
     /**

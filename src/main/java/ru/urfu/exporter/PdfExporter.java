@@ -1,15 +1,17 @@
-package ru.urfu.utils;
+package ru.urfu.exporter;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 
 /**
  * Экспортёр текста в PDF.
  */
+@Component("pdf")
 public class PdfExporter implements Exporter {
 
     @Override

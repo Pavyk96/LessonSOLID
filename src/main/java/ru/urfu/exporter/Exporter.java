@@ -1,4 +1,4 @@
-package ru.urfu.utils;
+package ru.urfu.exporter;
 
 import com.itextpdf.text.DocumentException;
 

@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import com.itextpdf.text.DocumentException;
+import ru.urfu.document.ImportService;
+import ru.urfu.exporter.ExportService;
+
 import java.util.Scanner;
 
 /**
@@ -20,10 +23,14 @@ public class ConsoleService {
 
     private final DocumentService documentService;
     private final ExportService exportService;
+    private final ImportService importService;
 
-    public ConsoleService(DocumentService documentService, ExportService exportService) {
+    public ConsoleService(DocumentService documentService,
+                          ExportService exportService,
+                          ImportService importService) {
         this.documentService = documentService;
         this.exportService = exportService;
+        this.importService = importService;
     }
 
     /**
@@ -54,7 +61,7 @@ public class ConsoleService {
         String path = scanner.nextLine();
 
         try {
-            documentService.importTxt(path);
+            importService.importTxt(path);
             System.out.println("Документ успешно импортирован.");
         } catch (IOException e) {
             System.out.println("Ошибка импорта: " + e.getMessage());
@@ -92,7 +99,6 @@ public class ConsoleService {
 
         Document document = documentOptional.get();
 
-        //добавить новые оповещение о новых импортах
         System.out.print("Введите формат (txt/pdf/docx): ");
         String format = scanner.nextLine().trim().toLowerCase();
 
