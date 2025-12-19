@@ -137,10 +137,8 @@ public class ConsoleApp implements CommandLineRunner {
         System.out.print("Введите формат экспорта: ");
         String format = scanner.nextLine().trim().toLowerCase();
 
-        Document document = documentOptional.get();
-
         try {
-            Path outputPath = exportService.export(document.name(), document.content(), format);
+            Path outputPath = exportService.export(documentOptional.get(), format);
             System.out.println("Экспорт выполнен: " + outputPath);
         } catch (IllegalArgumentException | IOException | DocumentException e) {
             System.out.println("Ошибка экспорта: " + e.getMessage());

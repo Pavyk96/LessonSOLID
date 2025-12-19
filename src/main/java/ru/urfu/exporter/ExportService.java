@@ -3,6 +3,7 @@ package ru.urfu.exporter;
 import com.itextpdf.text.DocumentException;
 import org.springframework.stereotype.Service;
 import java.nio.file.Path;
+import ru.urfu.document.Document;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,8 +37,7 @@ public class ExportService {
     /**
      * Экспортирует документ в указанный формат в директорию приложения.
      *
-     * @param fileName имя выходного файла без расширения
-     * @param content содержимое документа
+     * @param document документ для экспорта
      * @param format формат экспорта
      *
      * @return путь к созданному файлу
@@ -46,7 +46,7 @@ public class ExportService {
      * @throws IOException ошибка создания директории или записи файла
      * @throws DocumentException ошибка формирования PDF
      */
-    public Path export(String fileName, String content, String format) throws IOException, DocumentException {
+    public Path export(Document document, String format) throws IOException, DocumentException {
         Exporter exporter = exporters.get(format.toLowerCase());
         if (exporter == null) {
             throw new IllegalArgumentException("Неподдерживаемый формат экспорта: " + format);
@@ -54,8 +54,10 @@ public class ExportService {
 
         Files.createDirectories(OUTPUT_DIR);
 
-        Path outputPath = OUTPUT_DIR.resolve(fileName + "." + format.toLowerCase());
-        exporter.export(outputPath.toString(), content);
+        String ext = format.toLowerCase();
+        Path outputPath = OUTPUT_DIR.resolve(document.name() + "." + ext);
+
+        exporter.export(outputPath.toString(), document.content());
 
         return outputPath;
     }
