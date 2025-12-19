@@ -12,7 +12,20 @@ import java.io.IOException;
 public interface Exporter {
 
     /**
-     * Экспортировать содержимое в указанный файл
+     * Возвращает идентификатор поддерживаемого формата
+     *
+     * @return строковый идентификатор формата
+     */
+    String format();
+
+    /**
+     * Экспортирует содержимое документа в файл по указанному пути
+     *
+     * @param path путь к выходному файлу
+     * @param content содержимое документа
+     *
+     * @throws IOException ошибка записи файла
+     * @throws DocumentException ошибка формирования
      */
     void export(String path, String content) throws IOException, DocumentException;
 }

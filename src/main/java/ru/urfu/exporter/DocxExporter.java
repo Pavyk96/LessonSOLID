@@ -3,25 +3,23 @@ package ru.urfu.exporter;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
- * Экспортёр текста в TXT
+ * Класс пример, как можно добавить новый экспорт в 1 действие
  *
  * @author Daniil Mezev
  */
 @Component
-public class TxtExporter implements Exporter {
+public class DocxExporter implements Exporter {
 
     @Override
     public String format() {
-        return "txt";
+        return "docx";
     }
 
     @Override
     public void export(String path, String content) throws IOException {
-        Files.writeString(Path.of(path), content);
+        // реализация экспорта в DOCX
     }
 }
 

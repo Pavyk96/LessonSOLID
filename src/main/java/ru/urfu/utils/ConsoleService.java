@@ -109,7 +109,8 @@ public class ConsoleService {
             return;
         }
 
-        Path outputPath = Path.of(System.getProperty("user.home"), "lessonSOLID").resolve(document.name() + "." + format);
+        Path outputPath = Path.of(System.getProperty("user.home"), "lessonSOLID").resolve(document.name()
+                + "." + format);
 
         try {
             exportService.export(outputPath.toString(), document.content(), format);
