@@ -16,7 +16,7 @@ public interface Exporter {
      *
      * @return строковый идентификатор формата
      */
-    String format();
+    String getFormat();
 
     /**
      * Экспортирует содержимое документа в файл по указанному пути

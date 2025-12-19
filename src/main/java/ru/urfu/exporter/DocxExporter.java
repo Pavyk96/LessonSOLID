@@ -13,7 +13,7 @@ import java.io.IOException;
 public class DocxExporter implements Exporter {
 
     @Override
-    public String format() {
+    public String getFormat() {
         return "docx";
     }
 

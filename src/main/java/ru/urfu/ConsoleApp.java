@@ -1,6 +1,5 @@
 package ru.urfu;
 
-
 import com.itextpdf.text.DocumentException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +8,9 @@ import ru.urfu.document.Document;
 import ru.urfu.document.DocumentService;
 import ru.urfu.document.ImportService;
 import ru.urfu.exporter.ExportService;
+import java.nio.file.Path;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -23,8 +21,6 @@ import java.util.Scanner;
  */
 @SpringBootApplication
 public class ConsoleApp implements CommandLineRunner {
-
-    public static final Path OUTPUT_DIR = Path.of(System.getProperty("user.home"), "lessonSOLID");
 
     private final Scanner scanner = new Scanner(System.in);
     private final DocumentService documentService;
@@ -141,22 +137,12 @@ public class ConsoleApp implements CommandLineRunner {
         System.out.print("Введите формат экспорта: ");
         String format = scanner.nextLine().trim().toLowerCase();
 
-        try {
-            Files.createDirectories(OUTPUT_DIR);
-        } catch (IOException e) {
-            System.out.println("Ошибка создания директории: " + e.getMessage());
-            return;
-        }
-
         Document document = documentOptional.get();
-        Path outputPath = OUTPUT_DIR.resolve(document.name() + "." + format);
 
         try {
-            exportService.export(outputPath.toString(), document.content(), format);
+            Path outputPath = exportService.export(document.name(), document.content(), format);
             System.out.println("Экспорт выполнен: " + outputPath);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException | DocumentException e) {
+        } catch (IllegalArgumentException | IOException | DocumentException e) {
             System.out.println("Ошибка экспорта: " + e.getMessage());
         }
     }

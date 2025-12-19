@@ -15,7 +15,7 @@ import java.nio.file.Path;
 public class TxtExporter implements Exporter {
 
     @Override
-    public String format() {
+    public String getFormat() {
         return "txt";
     }
 

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class PdfExporter implements Exporter {
 
     @Override
-    public String format() {
+    public String getFormat() {
         return "pdf";
     }
 
